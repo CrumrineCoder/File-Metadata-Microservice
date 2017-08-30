@@ -4,7 +4,8 @@
 // init project
 var express = require('express');
 var app = express();
-
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 
 // we've started you off with Express, 
@@ -17,6 +18,17 @@ app.use(express.static('public'));
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
+/*
+app.post('/api/photo',function(req,res){
+   console.log(req.file);
+});
+*/
+var type = upload.single('userPhoto');
+app.post('/api/photo', type, function (req, res) {
+  res.send("Size: " + JSON.stringify(req.file.size)+ " bytes");
+})
+
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
