@@ -15,10 +15,15 @@
 
     <main>
       <p>Submit a file to view its filesize</p>
-      <form>
-       <input type="file" name="img">
-	   <input type="button" id="fileSubmit" onclick="testing()">
-      </form>
+      <!-- Ack: https://codeforgeek.com/2014/11/file-uploads-using-node-js/ -->
+      <form id        =  "uploadForm"
+     enctype   =  "multipart/form-data"
+     action    =  "/api/photo"
+     method    =  "post">
+        
+    <input type="file" name="userPhoto" />
+    <input type="submit" value="Upload Image" name="submit"/>
+    </form>
       <section class="dreams">
         <ul id="dreams">
         </ul>
